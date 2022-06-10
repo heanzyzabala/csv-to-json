@@ -1,0 +1,63 @@
+openapi: 3.0.1
+info:
+  version: 1.0.0
+  title: csv-to-json
+paths:
+  /files/extract:
+    post:
+      summary: Extract a csv file
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExtractCSVRequest'
+      responses:
+        '200': 
+          description: 'File extraction in process'
+
+components:
+  schemas:
+    ExtractCSVRequest:
+      type: object
+      additionalProperties: false
+      required:
+        - source
+      properties:
+        source:
+          type: string
+          minLength: 1
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          description: An application-specific error code expressed as a string value.
+        message:
+          type: string
+          description: Desc
+        details:
+            type: array
+            items:
+              type: string
+            description:
+              An array containing information about the error.
+  responses:
+    BadRequest:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+        description: The specified resource was not found
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Error'
+    InternalServerError:
+      description: Unexpected error occurred
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
