@@ -8,6 +8,8 @@ WORKDIR /usr/app
 
 USER node
 
+COPY --chown=node:node ./dist package*.json ./
+
 RUN npm i --production
 
 EXPOSE 3000
