@@ -43,6 +43,7 @@
     "err-code": "^3.0.1",
     "express": "^4.17.2",
     "express-healthcheck": "^0.1.0",
-    "openapi-validator-middleware": "^3.2.4"
+    "openapi-validator-middleware": "^3.2.4",
+    "uuid": "^8.3.2"
   }
 }
