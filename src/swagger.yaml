@@ -3,22 +3,22 @@ info:
   version: 1.0.0
   title: csv-to-json
 paths:
-  /files/extract:
+  /files/convert:
     post:
-      summary: Extract a csv file
+      summary: Convert a csv file to json
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ExtractCSVRequest'
+              $ref: '#/components/schemas/ConvertCSVRequest'
       responses:
         '200': 
-          description: 'File extraction in process'
+          $ref: '#/components/responses/ConvertCSVResponse'
 
 components:
   schemas:
-    ExtractCSVRequest:
+    ConvertCSVRequest:
       type: object
       additionalProperties: false
       required:
@@ -43,6 +43,22 @@ components:
             description:
               An array containing information about the error.
   responses:
+    ConvertCSVResponse:
+      description: Returns signed url and converted row count
+      content:
+        application/json:
+          schema:
+            type: object
+            additionalProperties: false
+            required:
+              - result
+              - rows
+            properties:
+              result:
+                type: string
+              rows:
+                type: integer
+
     BadRequest:
       description: Invalid request
       content:
