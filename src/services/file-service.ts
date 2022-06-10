@@ -36,7 +36,7 @@ export const upload = async (path: string, data: any): Promise<string> => {
 export const zip = (files: any[]): Buffer => {
   const zp = new Admzip()
   files.forEach((o, i) => {
-    zp.addFile(`row-${i + 1}.json`, Buffer.from(JSON.stringify(o), 'utf8'))
+    zp.addFile(`row-${i + 1}.json`, Buffer.from(JSON.stringify(o, null, 2), 'utf8'))
   })
   return zp.toBuffer()
 }
