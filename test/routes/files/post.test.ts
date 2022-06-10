@@ -29,7 +29,7 @@ describe('post', () => {
     mockedFileService.upload.mockResolvedValue('url')
 
     const response = await request(app)
-      .post('/files/extract')
+      .post('/files/convert')
       .send({ source: 'source.csv' })
       .expect(200)
 
@@ -39,7 +39,7 @@ describe('post', () => {
 
   it('should fail for additional properties', async () => {
     const response = await request(app)
-      .post('/files/extract')
+      .post('/files/convert')
       .send({ additionalProp: '', source: 'sample.csv' })
       .expect(400)
 
@@ -56,7 +56,7 @@ describe('post', () => {
 
   it('should fail when source property is empty', async () => {
     const response = await request(app)
-      .post('/files/extract')
+      .post('/files/convert')
       .send({ source: '' })
       .expect(400)
 
@@ -73,7 +73,7 @@ describe('post', () => {
 
   it('should fail when source property is missing', async () => {
     const response = await request(app)
-      .post('/files/extract')
+      .post('/files/convert')
       .send({ })
       .expect(400)
 
